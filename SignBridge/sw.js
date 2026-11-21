@@ -2,7 +2,7 @@
 // Browsers check this file for updates, so returning visitors get this version, which:
 //   1. deletes the old offline copy of the site (caches named "signbridge-...", up to 120 MB),
 //   2. removes itself,
-//   3. reloads open old pages, which then reach index.html here and forward to the new address.
+//   3. reloads open old pages, which then show GitHub's "404" page: the old site is switched off.
 // It stores nothing and sends nothing anywhere.
 self.addEventListener("install", () => self.skipWaiting());
 

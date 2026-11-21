@@ -1,18 +1,19 @@
-# Forwarding page for the old SignBridge address
+# Old SignBridge address: switched off
 
-SignBridge, now called SignMate, moved from `https://shaafrajput06-tech.github.io/SignBridge/` to
-`https://signmate-pk.github.io/` (see `docs/DOMAIN.md` in the SignBridge repository).
+SignBridge is now SignMate, at <https://signmate-pk.github.io/>. Its old address,
+`https://shaafrajput06-tech.github.io/SignBridge/`, was switched off on 2026-11-21 at the owner's request
+("make old website disappear, only the newest one should exist"). It shows GitHub's "404" page and does
+not forward anywhere.
 
-GitHub Pages does not forward a project site after its repository moves to another account, so these
-files do it. They belong in a repository called **`shaafrajput06-tech.github.io`** on the owner's own
-GitHub account (that repository's Pages site answers every address under
-`shaafrajput06-tech.github.io/`, including the old `/SignBridge/...` links):
+These files live in the repository **`shaafrajput06-tech.github.io`** on the owner's GitHub account, which
+answers every address under `shaafrajput06-tech.github.io/`:
 
 | File | What it does |
 |---|---|
-| `SignBridge/index.html` | the old home page: forwards to the new site, keeping `?query` and `#part` |
-| `404.html` | any other old link such as `/SignBridge/asl-selftest.html`: forwards to the same page on the new site |
-| `SignBridge/sw.js` | replaces the old offline worker: deletes the old offline copy on returning visitors' devices, removes itself and reloads the page so it forwards |
-| `.nojekyll` | tells GitHub Pages to publish the files as they are |
+| `SignBridge/sw.js` | Browsers that saved the old site for offline use ask for this file now and then. This version deletes the saved copy (caches named `signbridge-...`, up to 120 MB), removes itself and reloads the page, which then shows the 404. Without it, those browsers could keep showing the old site offline. |
+| `.nojekyll` | Tells GitHub Pages to publish the files as they are (so this README is not turned into a home page). |
 
-`tests/test_site_address.py` checks that the address in these files matches `shared_data/site.json`.
+There is no `index.html` and no `404.html` on purpose. Once the old offline copies have had time to clear
+(a few months), the repository can be deleted.
+
+`tests/test_site_address.py` checks that this folder holds no web pages.
